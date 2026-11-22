@@ -30,4 +30,4 @@ Two runs write byte-identical files (same SHA-256). The image is 1024×1024 JPEG
 
 ## How it was made
 
-The front page is drawn entirely in code (PIL): masthead, date line, a night-sky hero scene with missile streaks, skyline and fire glow, four colour-banded story panels with flat icons, and a two-item footer strip. Every fact on the page was checked against live reporting from AP and Reuters on 21 November 2026 before it was drawn. The image is 1024×1024 JPEG, 221,755 bytes, and every caption is legible at 300px.
+The front page is drawn entirely in code (PIL): masthead, date line, a night-sky hero scene with missile streaks, skyline and fire glow, four colour-banded story panels with flat icons, and a two-item footer strip. Every fact on the page was checked against live reporting from AP and Reuters on 21 November 2026 before it was drawn. The image is 1024×1024 JPEG, 224,725 bytes, and every caption is legible at 300px.

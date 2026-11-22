@@ -83,30 +83,38 @@ def draw_hero(d):
              (700, 170), (830, 188), (920, 175), (240, 210), (640, 205)]
     for sx, sy in stars:
         d.ellipse([sx, sy, sx + 3, sy + 3], fill=(200, 205, 220))
-    # missile streaks
-    d.line([(120, 210), (330, 330)], fill=GOLD, width=5)
-    d.line([(880, 200), (700, 320)], fill=GOLD, width=5)
-    d.ellipse([318, 318, 342, 342], fill=(255, 190, 60))
-    d.ellipse([688, 308, 712, 332], fill=(255, 190, 60))
-    # fire glow at impact points, above the headline band
-    d.ellipse([300, 340, 380, 394], fill=(255, 120, 30))
-    d.ellipse([660, 348, 720, 394], fill=(255, 120, 30))
-    # smoke plumes
-    for cx, cy, r in [(340, 320, 26), (360, 295, 20), (690, 325, 24),
-                      (670, 300, 18)]:
-        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(120, 120, 125))
-    # city skyline silhouette, standing on the headline band
+    # missile streaks, ending at the two impact fires
+    d.line([(120, 210), (350, 320)], fill=GOLD, width=5)
+    d.line([(880, 200), (710, 318)], fill=GOLD, width=5)
+    # one continuous skyline across the whole hero, so no lit window
+    # ever floats in empty sky; the two struck blocks stand lower
     base = y1 - 118
-    buildings = [(60, 330, 110, 60), (115, 300, 165, 90), (170, 345, 215, 45),
-                 (220, 310, 280, 80), (740, 320, 800, 70), (805, 345, 860, 45),
-                 (865, 305, 930, 85), (935, 340, 975, 50)]
-    for bx, by, bx2, bh in buildings:
-        d.rectangle([bx, by, bx2, base], fill=(10, 16, 30))
-    # lit windows
-    for wx in range(70, 970, 22):
-        for wy in (320, 345, 368):
-            if (wx * 7 + wy) % 5 == 0:
-                d.rectangle([wx, wy, wx + 6, wy + 8], fill=(255, 200, 90))
+    buildings = [(48, 330, 105), (105, 300, 160), (160, 345, 215),
+                 (215, 310, 275), (275, 348, 330), (330, 356, 395),
+                 (395, 315, 455), (455, 340, 515), (515, 305, 575),
+                 (575, 335, 635), (635, 348, 690), (690, 354, 750),
+                 (750, 315, 810), (810, 340, 870), (870, 305, 930),
+                 (930, 345, 976)]
+    for bx, top, bx2 in buildings:
+        d.rectangle([bx, top, bx2, base], fill=(10, 16, 30))
+    # lit windows, only inside a building's own walls
+    for bx, top, bx2 in buildings:
+        for wx in range(bx + 10, bx2 - 8, 22):
+            for wy in (top + 14, top + 40, top + 66):
+                if wy + 8 < base - 4 and (wx * 7 + wy) % 5 == 0:
+                    d.rectangle([wx, wy, wx + 6, wy + 8], fill=(255, 200, 90))
+    # fires burning on the rooftops of the two struck blocks, with
+    # smoke rising from each in a tapering column
+    for cx, roof in [(362, 356), (720, 354)]:
+        d.ellipse([cx - 34, roof - 16, cx + 34, roof + 10], fill=(255, 120, 30))
+        d.ellipse([cx - 22, roof - 40, cx + 22, roof + 4], fill=(255, 120, 30))
+        d.ellipse([cx - 12, roof - 28, cx + 12, roof + 2], fill=(255, 190, 60))
+        d.ellipse([cx - 5, roof - 16, cx + 5, roof + 2], fill=(255, 230, 120))
+        plume = [(cx - 8, roof - 76, cx + 16, roof - 44, (120, 120, 125)),
+                 (cx + 0, roof - 102, cx + 20, roof - 70, (140, 140, 145)),
+                 (cx + 8, roof - 124, cx + 24, roof - 94, (160, 160, 165))]
+        for px0, py0, px1, py1, col in plume:
+            d.ellipse([px0, py0, px1, py1], fill=col)
     # headline over the scene, bottom of hero
     d.rectangle([x0, y1 - 118, x1, y1], fill=(12, 18, 34))
     f_h = font(SERIF_B, 52)

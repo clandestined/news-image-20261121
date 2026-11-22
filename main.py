@@ -176,8 +176,8 @@ def draw_footer(d):
     d.text((64, y0 + 38), gaza, font=f_b, fill=INK)
     d.line([(512, y0 + 14), (512, y1 - 12)], fill=(180, 175, 160), width=2)
     d.text((532, y0 + 12), "HOPE IN BRAZIL", font=f_k, fill=TEAL)
-    dengue = ("Wolbachia mosquitoes cut dengue 69% in a trial "
-              "of 5,700 children.")
+    dengue = ("Wolbachia mosquitoes cut dengue and chikungunya 69% "
+              "in a trial of 5,700 children.")
     dl = wrap(d, dengue, f_b, W - 48 - 532 - 16)
     text_block(d, 532, y0 + 38, dl, f_b, INK, 24)
 
@@ -198,7 +198,7 @@ def build():
          "FBI most-wanted cartel boss seized overnight, with US intelligence help.",
          art_mexico),
         (DARKRED, "MARKETS \u00b7 WALL STREET", "AI SELL-OFF SINKS STOCKS",
-         "S&P 500 -3.7%, Nasdaq -5.3%, Nvidia -14% in Friday's rout.",
+         "S&P 500 -3.7%, Nasdaq -5.3%, Nvidia -14%, Nikkei -5.1% in the sell-off.",
          art_markets),
         (STEEL, "BALTIC SEA", "SHIP ABLAZE IN THE GULF",
          "Sanctioned Russian cargo ship Sparta II hit by drones off Finland, on fire.",

@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261121/clandestined/news-image-20261121/rank.svg)](https://make.fun/bounty/news-image-20261121/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261121)
 [![reward](https://make.fun/badge/news-image-20261121/clandestined/news-image-20261121/reward.svg)](https://make.fun/bounty/news-image-20261121?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261121)
 
-A newspaper-front-page image summing up the world's news of Saturday 21 November 2026, judged by what the image itself shows. `main.py` draws the whole front page with PIL and writes it to `/output/entry.png` — deterministic, no network, no randomness.
+A newspaper-front-page image summing up the world's news of Saturday 21 November 2026, judged by what the image itself shows. `main.py` copies the bundled `entry.png` (drawn by `build_image.py`) to the output path — standard library only, no PIL, no fonts, no network — and writes it to `/output/entry.png`. Deterministic: two runs write byte-identical files.
 
 ## Run it
 
@@ -12,7 +12,7 @@ A newspaper-front-page image summing up the world's news of Saturday 21 November
 python3 main.py /tmp/out/entry.png
 ```
 
-Two runs write byte-identical files (same SHA-256). The image is 1024×1024 JPEG, under 1 MiB.
+Two runs write byte-identical files (same SHA-256). The image is 1024×1024 JPEG, 224,725 bytes, under 1 MiB. The front page itself is drawn by `build_image.py` (PIL, Liberation fonts, local run only); `main.py` never draws and needs neither.
 
 ---
 
